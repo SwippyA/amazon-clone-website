@@ -1,17 +1,21 @@
-import { cart } from "../data/cart";
-import { products } from "../data/products";
+import {cart} from "../data/cart.js";
+import {products} from "../data/products.js";
+
 let cart_html = '';
+
+
+
 cart.forEach((item) => {
-  let productid = item.productid;
+  const productid = item.productid;
   let match;
 
   products.forEach((item2) => {
-    if (item.productid === item2.id) {
+    if (item2.id === productid) {
       match = item2;
       console.log(match);
     }
 
-  });
+ });
   cart_html += `<div class="cart-item-container">
     <div class="delivery-date">
       Delivery date: Tuesday, June 21
@@ -90,6 +94,6 @@ cart.forEach((item) => {
 
 
 
-});
+ });
 console.log(cart_html);
 document.querySelector('.js-cart-html').innerHTML = cart_html;
