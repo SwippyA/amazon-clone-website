@@ -1,4 +1,4 @@
-export const cart=[
+export let cart=[
     {
         productid: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
         quantity:2
@@ -30,4 +30,14 @@ export function addtocart(product_id){
         // console.log(cart);
     }
 
+}
+
+export function remove_to_cart(pro_id){
+    let array =[];
+    cart.forEach((item)=>{
+        if(pro_id !== item.productid){
+            array.push=item;
+        }
+    });
+    cart=array;
 }
