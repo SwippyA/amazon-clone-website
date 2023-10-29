@@ -2,7 +2,7 @@ import {cart} from "../data/cart.js";
 import {products} from "../data/products.js";
 
 let cart_html = '';
-
+let i=0;
 
 
 cart.forEach((item) => {
@@ -30,7 +30,7 @@ cart.forEach((item) => {
          ${match.name}
         </div>
         <div class="product-price">
-          $${match.priceCents / 100}
+          $${(match.priceCents / 100).toFixed(2)}
         </div>
         <div class="product-quantity">
           <span>
@@ -52,7 +52,7 @@ cart.forEach((item) => {
         <div class="delivery-option">
           <input type="radio" checked
             class="delivery-option-input"
-            name="delivery-option-1">
+            name="delivery-option-${i}">
           <div>
             <div class="delivery-option-date">
               Tuesday, June 21
@@ -65,7 +65,7 @@ cart.forEach((item) => {
         <div class="delivery-option">
           <input type="radio"
             class="delivery-option-input"
-            name="delivery-option-1">
+            name="delivery-option-${i}">
           <div>
             <div class="delivery-option-date">
               Wednesday, June 15
@@ -78,7 +78,7 @@ cart.forEach((item) => {
         <div class="delivery-option">
           <input type="radio"
             class="delivery-option-input"
-            name="delivery-option-1">
+            name="delivery-option-${i}">
           <div>
             <div class="delivery-option-date">
               Monday, June 13
@@ -93,7 +93,7 @@ cart.forEach((item) => {
   </div>`;
 
 
-
- });
-console.log(cart_html);
+  i++;
+});
+// console.log(cart_html);
 document.querySelector('.js-cart-html').innerHTML = cart_html;
