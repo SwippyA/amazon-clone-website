@@ -1,5 +1,5 @@
-// import {cart} from '../data/cart';
-// import {products} from '../data/products';
+import {cart} from '../data/cart.js';
+import {products} from '../data/products.js';
 
 
 
