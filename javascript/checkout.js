@@ -12,7 +12,7 @@ cart.forEach((item) => {
   products.forEach((item2) => {
     if (item2.id === productid) {
       match = item2;
-      console.log(match);
+      // console.log(match);
     }
 
   });

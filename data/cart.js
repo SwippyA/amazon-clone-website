@@ -40,6 +40,7 @@ export function addtocart(product_id){
     }
     
     store_the_cart();
+    console.log(cart);
 
 }
 
@@ -50,6 +51,8 @@ export function remove_to_cart(pro_id){
             array.push=item;
         }
     });
-    cart=array;
+    cart = array;
+    console.log(cart);
     store_the_cart();
+    
 }
