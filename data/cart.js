@@ -44,15 +44,7 @@ export function addtocart(product_id){
 
 }
 
-export function remove_to_cart(pro_id){
-    let array =[];
-    cart.forEach((item)=>{
-        if(pro_id !== item.productid){
-            array.push=item;
-        }
-    });
-    cart = array;
-    console.log(cart);
+export function remove_to_cart(pro_id) {
+    cart = cart.filter(item => pro_id !== item.productid);
     store_the_cart();
-    
 }
