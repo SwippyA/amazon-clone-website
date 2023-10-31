@@ -1,6 +1,10 @@
 import { cart, remove_to_cart } from "../data/cart.js";
 import { products } from "../data/products.js";
+import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
+import { d_option } from "../data/deleri_option.js";
 
+
+ 
 let cart_html = '';
 let i = 0;
 
@@ -49,45 +53,8 @@ cart.forEach((item) => {
         <div class="delivery-options-title">
           Choose a delivery option:
         </div>
-        <div class="delivery-option">
-          <input type="radio" checked
-            class="delivery-option-input"
-            name="delivery-option-${i}">
-          <div>
-            <div class="delivery-option-date">
-              Tuesday, June 21
-            </div>
-            <div class="delivery-option-price">
-              FREE Shipping
-            </div>
-          </div>
-        </div>
-        <div class="delivery-option">
-          <input type="radio"
-            class="delivery-option-input"
-            name="delivery-option-${i}">
-          <div>
-            <div class="delivery-option-date">
-              Wednesday, June 15
-            </div>
-            <div class="delivery-option-price">
-              $4.99 - Shipping
-            </div>
-          </div>
-        </div>
-        <div class="delivery-option">
-          <input type="radio"
-            class="delivery-option-input"
-            name="delivery-option-${i}">
-          <div>
-            <div class="delivery-option-date">
-              Monday, June 13
-            </div>
-            <div class="delivery-option-price">
-              $9.99 - Shipping
-            </div>
-          </div>
-        </div>
+        ${date_summy(item)}
+        
       </div>
     </div>
   </div>`;
@@ -109,4 +76,58 @@ document.querySelectorAll('.link-primary').forEach((link) => {
 
   });
 });
+
+function date_summy(cart_item){
+  let match ;
+  let match1 ;
+  let html='';
+
+  d_option.forEach((item)=>{
+    if(item.id===cart.d_opt){
+      match=item;
+    }
+  if(cart.productid===products.id){
+        match1=products;
+      //  let  match3=cart;
+
+        
+      }
+const check =cart_item.d_opt===item.id;
+  
+
+
+  
+      
+  let date = dayjs();
+  let add_date=date.add(item.day_add,'day');
+  let now_date= add_date.format('dddd,MMMM D');
+  html +=`
+      <div class="delivery-option">
+      <input type="radio"
+        ${check ? 'checked':'' }
+        class="delivery-option-input"
+        name="delivery-option-${i}">
+      <div>
+        <div class="delivery-option-date">
+          ${now_date}
+        </div>
+        <div class="delivery-option-price">
+         ${(item.shipping)/100} Shipping
+        </div>
+      </div>
+    </div>
+      `;
+
+
+
+
+
+  });
+  return html;
+}
+
+
+
+
+  
 
