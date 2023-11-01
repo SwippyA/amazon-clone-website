@@ -150,12 +150,15 @@ function rendercartsummy() {
   function count_price() {
     let sum = 0;
     let sum1 = 0;
+    let sum2=0;
     let payment_html = '';
 
 
     cart.forEach((cartItem) => {
       // Find the corresponding product based on the product ID in the cart
       const product = products.find((productItem) => productItem.id === cartItem.productid);
+      
+
 
       if (product) {
         sum += (((product.priceCents) / 100) * cartItem.quantity);
@@ -169,6 +172,8 @@ function rendercartsummy() {
 
       });
       sum1 += product1.shipping / 100;
+      sum2 += cartItem.quantity;
+      console.log(sum2);
     });
 
 
@@ -189,7 +194,7 @@ function rendercartsummy() {
       </div>
 
       <div class="payment-summary-row">
-        <div>Items (3):</div>
+        <div>Items (${sum2}):</div>
         <div class="payment-summary-money">$${sum.toFixed(2)}</div>
       </div>
 
