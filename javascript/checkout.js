@@ -4,7 +4,8 @@ import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 import { d_option } from "../data/deleri_option.js";
 
 
- 
+function rendercartsummy(){
+  
 let cart_html = '';
 let i = 0;
 
@@ -65,7 +66,7 @@ cart.forEach((item) => {
         <div class="delivery-options-title">
           Choose a delivery option:
         </div>
-        ${date_summy(item)}
+        ${date_summy(item,match)}
         
       </div>
     </div>
@@ -89,7 +90,7 @@ document.querySelectorAll('.link-primary').forEach((link) => {
   });
 });
 
- export function date_summy(cart_item){
+function date_summy(cart_item,product_item){
   let match ;
   let match1 ;
   let html='';
@@ -109,7 +110,7 @@ document.querySelectorAll('.link-primary').forEach((link) => {
       let now_date= add_date.format('dddd,MMMM D');
       const check =cart_item.d_opt===item.id;
       html +=`
-      <div class="delivery-option  js_up " data-product-id="${match1.id}" 
+      <div class="delivery-option  js_up " data-product-id="${product_item.id }" 
       data-da-id="${item.id}">
       <input type="radio"
         ${check ? 'checked':'' }
@@ -131,13 +132,17 @@ document.querySelectorAll('.link-primary').forEach((link) => {
 }
 
 
+
+
 document.querySelectorAll('.js_up').forEach((element) => {
   element.addEventListener('click', () => {
     const { productId, daId } = element.dataset;
 
     updatethecart(productId, daId);
-    
+    rendercartsummy();
+
   });
 });
-
+}
+rendercartsummy();
 
