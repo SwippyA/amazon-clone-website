@@ -3,8 +3,7 @@ import { products } from "../data/products.js";
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 import { d_option } from "../data/deleri_option.js";
 
-
-function rendercartsummy(){
+ function rendercartsummy(){
   
 let cart_html = '';
 let i = 0;
@@ -140,9 +139,91 @@ document.querySelectorAll('.js_up').forEach((element) => {
 
     updatethecart(productId, daId);
     rendercartsummy();
+    count_price();
 
   });
 });
 }
 rendercartsummy();
+
+
+function count_price() {
+  let sum = 0;
+  let sum1= 0;
+  let payment_html ='';
+  
+   
+  cart.forEach((cartItem) => {
+    // Find the corresponding product based on the product ID in the cart
+    const product = products.find((productItem) => productItem.id === cartItem.productid);
+    
+    if (product) {
+      sum += (((product.priceCents)/100)*cartItem.quantity);
+    }
+    
+    });
+    d_option.forEach((Item) => {
+      // Find the corresponding product based on the product ID in the cart
+      const product1 = cart.find((element) => element.d_opt === Item.id);
+      
+      if (product1) {
+        sum1 += Item.shipping/100 ;
+      }
+  });
+  console.log(sum.toFixed(2));
+  
+  console.log(sum1);
+  let tax_before_=sum+sum1;
+  console.log((tax_before_).toFixed(2));
+  let tax = (tax_before_)*0.1
+  console.log(tax.toFixed(2));
+  let after_tax_ =tax+tax_before_;
+  console.log(after_tax_.toFixed(2));
+
+
+  payment_html +=`
+        <div class="payment-summary-title">
+        Order Summary
+      </div>
+
+      <div class="payment-summary-row">
+        <div>Items (3):</div>
+        <div class="payment-summary-money">$${sum.toFixed(2)}</div>
+      </div>
+
+      <div class="payment-summary-row">
+        <div>Shipping &amp; handling:</div>
+        <div class="payment-summary-money">$${sum1.toFixed(2)}</div>
+      </div>
+
+      <div class="payment-summary-row subtotal-row">
+        <div>Total before tax:</div>
+        <div class="payment-summary-money">$${tax_before_.toFixed(2)}</div>
+      </div>
+
+      <div class="payment-summary-row">
+        <div>Estimated tax (10%):</div>
+        <div class="payment-summary-money">$${tax.toFixed(2)}</div>
+      </div>
+
+      <div class="payment-summary-row total-row">
+        <div>Order total:</div>
+        <div class="payment-summary-money">$${after_tax_.toFixed(2)}</div>
+      </div>
+
+      <button class="place-order-button button-primary">
+        Place your order
+      </button>
+  
+      `;
+      
+      return payment_html;
+
+
+}
+document.querySelector('.js-payment').innerHTML= count_price();
+
+
+// rendercartsummy();
+// count_price();
 

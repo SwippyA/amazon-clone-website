@@ -1,4 +1,5 @@
 // import { date_summy } from "../javascript/checkout.js";
+// import {rendercartsummy} from '../javascript/checkout.js'
 export let cart = JSON.parse(localStorage.getItem('cart'));
 
 if(!cart){
@@ -43,7 +44,8 @@ export function addtocart(product_id){
         });
         // console.log(cart);
     }
-    // date_summy(product_id);
+    // rendercartsummy();
+    // count_price();
     
     store_the_cart();
     // console.log(cart);
@@ -54,6 +56,9 @@ export function addtocart(product_id){
 export function remove_to_cart(pro_id) {
     cart = cart.filter(item => pro_id !== item.productid);
     // date_summy(pro_id);
+    // rendercartsummy();
+    // count_price();
+
     store_the_cart();
 }
 
@@ -66,6 +71,7 @@ export function updatethecart(product_id, d_option_id) {
     });
   
     match.d_opt =d_option_id ;
+    
     store_the_cart();
     // console.log(match.d_opt);
   }
