@@ -6,6 +6,8 @@ import {products} from '../data/products.js';
 
 
 
+
+
 let productHtml ='';
 
 products.forEach((product)=>{
@@ -66,18 +68,24 @@ function cart_quantity(){
             
         });
         document.querySelector('.js-count').innerHTML=count;
-}
-document.querySelector('.js-product-grid').innerHTML= productHtml;
+        // renderhomepage();
+      }
+cart_quantity();
 
-document.querySelectorAll('.js-button').forEach((button) => {
-    button.addEventListener('click',()=>{
-         const product_id= button.dataset.productId;
-        //  console.log(product_id);
-         addtocart(product_id);
-         cart_quantity();
+      document.querySelector('.js-product-grid').innerHTML= productHtml;
+      
+      document.querySelectorAll('.js-button').forEach((button) => {
+        button.addEventListener('click',()=>{
+          const product_id= button.dataset.productId;
+          //  console.log(product_id);
+          addtocart(product_id);
+          cart_quantity();
+          // renderhomepage();
     });
     
 });
+
+// renderhomepage();
 
 
 
