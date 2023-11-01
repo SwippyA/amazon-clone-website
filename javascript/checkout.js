@@ -1,4 +1,4 @@
-import { cart, remove_to_cart, updatethecart } from "../data/cart.js";
+import { cart,remove_to_cart, updatethecart } from "../data/cart.js";
 import { products } from "../data/products.js";
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 import { d_option } from "../data/deleri_option.js";
@@ -82,6 +82,9 @@ function rendercartsummy() {
       const pro_id = link.dataset.productId;
       // console.log(pro_id);
       remove_to_cart(pro_id);
+      count_price();
+      rendercartsummy();
+
 
       document.querySelector(`.js-${pro_id}`).remove();
 
@@ -210,9 +213,11 @@ function rendercartsummy() {
         <div class="payment-summary-money">$${after_tax_.toFixed(2)}</div>
       </div>
 
-      <button class="place-order-button button-primary">
-        Place your order
-      </button>
+      <a href="orders.html"><button class="place-order-button button-primary">
+      Place your order
+       
+      </button></a>
+      
   
       `;
 
@@ -225,6 +230,8 @@ function rendercartsummy() {
 
   // rendercartsummy();
   count_price();
+
+  
 
 }
 rendercartsummy();
