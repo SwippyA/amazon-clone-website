@@ -1,4 +1,4 @@
-import { cart, remove_to_cart } from "../data/cart.js";
+import {cart,remove_to_cart,updatethecart } from "../data/cart.js";
 import { products } from "../data/products.js";
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 import { d_option } from "../data/deleri_option.js";
@@ -20,9 +20,21 @@ cart.forEach((item) => {
     }
 
   });
+
+  let date1 =item.d_opt;
+  let mat_id;
+  d_option.forEach((option) =>{
+    if(option.id===date1){
+      mat_id=option;
+    }
+  });
+
+      let date = dayjs();
+      let add_date=date.add(mat_id.day_add,'day');
+      let now_date= add_date.format('dddd,MMMM D');
   cart_html += `<div class="cart-item-container js-${match.id}">
     <div class="delivery-date">
-      Delivery date: Tuesday, June 21
+      Delivery date:   ${now_date}
     </div>
 
     <div class="cart-item-details-grid">
@@ -77,7 +89,7 @@ document.querySelectorAll('.link-primary').forEach((link) => {
   });
 });
 
-function date_summy(cart_item){
+ export function date_summy(cart_item){
   let match ;
   let match1 ;
   let html='';
@@ -91,18 +103,14 @@ function date_summy(cart_item){
       //  let  match3=cart;
 
         
-      }
-const check =cart_item.d_opt===item.id;
-  
-
-
-  
-      
-  let date = dayjs();
-  let add_date=date.add(item.day_add,'day');
-  let now_date= add_date.format('dddd,MMMM D');
-  html +=`
-      <div class="delivery-option">
+      }    
+      let date = dayjs();
+      let add_date=date.add(item.day_add,'day');
+      let now_date= add_date.format('dddd,MMMM D');
+      const check =cart_item.d_opt===item.id;
+      html +=`
+      <div class="delivery-option  js_up " data-product-id="${match1.id}" 
+      data-da-id="${item.id}">
       <input type="radio"
         ${check ? 'checked':'' }
         class="delivery-option-input"
@@ -118,16 +126,18 @@ const check =cart_item.d_opt===item.id;
     </div>
       `;
 
-
-
-
-
   });
   return html;
 }
 
 
+document.querySelectorAll('.js_up').forEach((element) => {
+  element.addEventListener('click', () => {
+    const { productId, daId } = element.dataset;
 
+    updatethecart(productId, daId);
+    
+  });
+});
 
-  
 

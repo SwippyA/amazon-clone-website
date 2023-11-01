@@ -1,3 +1,4 @@
+// import { date_summy } from "../javascript/checkout.js";
 export let cart = JSON.parse(localStorage.getItem('cart'));
 
 if(!cart){
@@ -18,6 +19,7 @@ if(!cart){
 function store_the_cart(){
     localStorage.setItem('cart',JSON.stringify(cart));
 }
+
 
 export function addtocart(product_id){
     
@@ -41,13 +43,28 @@ export function addtocart(product_id){
         });
         // console.log(cart);
     }
+    // date_summy(product_id);
     
     store_the_cart();
     // console.log(cart);
+    
 
 }
 
 export function remove_to_cart(pro_id) {
     cart = cart.filter(item => pro_id !== item.productid);
+    // date_summy(pro_id);
     store_the_cart();
 }
+
+export function updatethecart(product_id, d_option_id) {
+    let match;
+    cart.forEach((item) => {
+      if (product_id === item.productid) {
+        match = item;
+      }
+    });
+  
+    match.d_opt =d_option_id ;
+    // console.log(match.d_opt);
+  }
