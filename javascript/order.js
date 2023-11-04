@@ -144,30 +144,26 @@ document.querySelector('.cart-quantity').innerHTML = order_qu();
 
 
 
-let cart1_order = null;
+let cart1_order;
 
-if (!cart1_order) {
-  cart1_order = [{
-    productid: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
-    quantity: 2,
-    d_opt: '2'
-  },
-  {
-    productid: "dd82ca78-a18b-4e2a-9250-31e67412f98d",
-    quantity: 1,
-    d_opt: '3'
-  }
-  ];
-}
+
 if (cart1_order !== cart) {
   cart1_order = JSON.parse(localStorage.getItem('cart1'))
+  localStorage.setItem('cart2', JSON.stringify(cart1_order));
+  
+  cart1_order = JSON.parse(localStorage.getItem('cart2'))
 
+  console.log(cart1_order);
+  console.log(cart);
 }
-else {
+
+
   let cart1 = cart;
   localStorage.setItem('cart1', JSON.stringify(cart1));
   cart1 = null;
-}
+  
+
+ 
 
 
 
@@ -191,10 +187,8 @@ function last_order_head(cart1_order) {
   let sum1 = 0;
 
   cart1_order.forEach((cartItem) => {
+
     const product = products.find((productItem) => productItem.id === cartItem.productid);
-
-
-
     if (product) {
       sum += ((product.priceCents / 100) * cartItem.quantity);
     }
