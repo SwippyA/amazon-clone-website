@@ -218,7 +218,7 @@ function rendercartsummy() {
         <div class="payment-summary-money">$${after_tax_.toFixed(2)}</div>
       </div>
 
-      <a href="orders.html"><button class="place-order-button button-primary">
+      <a href="orders.html"><button class="place-order-button button-primary js_placeorder">
       Place your order
        
       </button></a>
