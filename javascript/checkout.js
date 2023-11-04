@@ -119,7 +119,7 @@ function rendercartsummy() {
         class="delivery-option-input"
         name="delivery-option-${i}">
       <div>
-        <div class="delivery-option-date">
+        <div class="delivery-option-date js_order_date">
           ${now_date}
         </div>
         <div class="delivery-option-price">
@@ -177,7 +177,7 @@ function rendercartsummy() {
     });
 
 
-    // console.log(sum.toFixed(2));
+    
 
     // console.log(sum1);
     let tax_before_ = sum + sum1;
