@@ -75,5 +75,5 @@ export function updatethecart(product_id, d_option_id) {
     store_the_cart();
     // console.log(match.d_opt);
   }
-
+  
   

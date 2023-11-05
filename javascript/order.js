@@ -23,9 +23,11 @@ function order_page() {
         `;
 
   document.querySelector('.js_date1').innerHTML = html;
+  
 
 }
 order_page();
+
 
 
 
@@ -150,17 +152,18 @@ let cart1_order;
 if (cart1_order !== cart) {
   cart1_order = JSON.parse(localStorage.getItem('cart1'))
   localStorage.setItem('cart2', JSON.stringify(cart1_order));
-  
   cart1_order = JSON.parse(localStorage.getItem('cart2'))
 
   console.log(cart1_order);
   console.log(cart);
 }
 
-
+else{
   let cart1 = cart;
   localStorage.setItem('cart1', JSON.stringify(cart1));
   cart1 = null;
+}
+  
   
 
  
@@ -287,7 +290,7 @@ function last_order_info(cart1_order) {
 
             <div class="product-actions">
               <a href="tracking.html">
-                <button class="track-package-button button-secondary">
+                <button class="track-package-button button-secondary js-bu" data-product-id="${shubham.id}">
                   Track package
                 </button>
               </a>
