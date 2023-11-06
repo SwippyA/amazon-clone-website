@@ -303,7 +303,5 @@ function last_order_info(cart1_order) {
   });
 
 
-
-
   return html_last_order_info;
 }
