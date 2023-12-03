@@ -23,7 +23,7 @@ function order_page() {
         `;
 
   document.querySelector('.js_date1').innerHTML = html;
-  
+
 
 }
 order_page();
@@ -154,19 +154,19 @@ if (cart1_order !== cart) {
   localStorage.setItem('cart2', JSON.stringify(cart1_order));
   cart1_order = JSON.parse(localStorage.getItem('cart2'))
 
-  console.log(cart1_order);
-  console.log(cart);
+  // console.log(cart1_order);
+  // console.log(cart);
 }
 
-else{
+else {
   let cart1 = cart;
   localStorage.setItem('cart1', JSON.stringify(cart1));
   cart1 = null;
 }
-  
-  
 
- 
+
+
+
 
 
 
